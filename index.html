@@ -7,7 +7,7 @@
       name="description"
       content="Encontre o imóvel ideal com atendimento próximo, transparente e personalizado."
     />
-    <title>Imob Prime | Seu próximo endereço começa aqui</title>
+    <title>Tarciso Prime | Seu próximo endereço começa aqui</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,6 +23,7 @@
         --line: #e6e9e8;
         --gold: #c49a5a;
         --white: #fff;
+        --shadow: 0 18px 50px rgba(13, 36, 51, 0.12);
       }
       * {
         box-sizing: border-box;
@@ -89,8 +90,11 @@
         display: grid;
         place-items: center;
         color: var(--gold);
-        font-family: serif;
-        font-size: 22px;
+        font-family: "Playfair Display", serif;
+        font-size: 27px;
+        font-style: italic;
+        border-radius: 50% 50% 50% 8px;
+        transform: rotate(-8deg);
       }
       .navlinks {
         display: flex;
@@ -178,6 +182,8 @@
       }
       .btn-gold {
         background: var(--gold);
+        color: var(--navy);
+        box-shadow: 0 10px 24px rgba(196, 154, 90, 0.24);
         color: white;
       }
       .btn-gold:hover {
@@ -771,7 +777,7 @@
           margin: 14px 0 0;
         }
       }
-  .social-links{display:flex;gap:10px;justify-content:center;margin-top:18px}.social-link{width:38px;height:38px;border:1px solid #48616a;border-radius:50%;display:grid;place-items:center;color:#dce7e9;font-weight:700;font-size:14px}.social-link:hover{color:var(--gold);border-color:var(--gold)}.social-fields{display:grid;gap:10px}.social-field{display:grid;grid-template-columns:24px 1fr;gap:8px;align-items:center}.social-field input[type=checkbox]{width:17px;height:17px;accent-color:var(--gold)}
+  .social-links{display:flex;gap:10px;justify-content:center;margin-top:18px}.social-link{width:40px;height:40px;border:1px solid #48616a;border-radius:50%;display:grid;place-items:center;color:#dce7e9;font-weight:700;font-size:14px;transition:.2s}.social-link svg{width:18px;height:18px;fill:currentColor}.social-link:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-2px)}.social-fields{display:grid;gap:10px;margin:12px 0 20px}.social-field{display:grid;grid-template-columns:24px 1fr 1fr;gap:8px;align-items:center}.social-field input[type=checkbox]{width:17px;height:17px;accent-color:var(--gold)}.social-field input[type=url]{min-width:0}
   </style>
   </head>
   <body>
@@ -785,7 +791,7 @@
       <div class="container">
         <nav>
           <a class="brand" href="#inicio"
-            ><span class="brand-mark">I</span> IMOB PRIME</a
+            ><span class="brand-mark">T</span> TARCISO PRIME</a
           >
           <div class="navlinks">
             <a href="#imoveis">Imóveis</a><a href="#sobre">Sobre mim</a
@@ -1116,12 +1122,12 @@
     <footer>
       <div class="container">
         <div>
-          © 2026 Imob Prime. Todos os direitos reservados.
+          © 2026 Tarciso Prime. Todos os direitos reservados.
           <button class="secret-link" onclick="openAdmin()">Redes</button>
         </div>
         <div>
           CRECI 00000-F &nbsp;·&nbsp; Privacidade &nbsp;·&nbsp; Feito para boas
-          escolhas.<div class="social-links"><a id="socialInstagram" class="social-link" target="_blank" aria-label="Instagram">◎</a><a id="socialX" class="social-link" target="_blank" aria-label="X">𝕏</a><a id="socialFacebook" class="social-link" target="_blank" aria-label="Facebook">f</a><a id="socialYoutube" class="social-link" target="_blank" aria-label="YouTube">▶</a><a id="socialLinkedin" class="social-link" target="_blank" aria-label="LinkedIn">in</a></div>
+          escolhas.<div class="social-links"><a id="socialInstagram" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.5 6a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/></svg></a><a id="socialX" class="social-link" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.24l-4.89-6.39L6.48 22H3.37l7.24-8.28L2.8 2h6.4l4.42 5.84L18.9 2Zm-1.1 17.7h1.73L8.26 4.18H6.4L17.8 19.7Z"/></svg></a><a id="socialFacebook" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">f</a><a id="socialYoutube" class="social-link" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.9V8.1l6.5 3.9-6.5 3.9Z"/></svg></a><a id="socialLinkedin" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">in</a></div>
         </div>
       </div>
     </footer>
@@ -1182,6 +1188,10 @@
       }
       function renderPanel() {
         var a = JSON.parse(localStorage.getItem("imobListings") || "[]");
+        var s = JSON.parse(localStorage.getItem("imobSocials") || "{}"),
+          social = function (key) {
+            return s[key] || "";
+          };
         document.querySelector("#adminContent").innerHTML =
           '<div><div class="eyebrow">Painel administrativo</div><h2>Gerenciar imóveis</h2><p>Cadastre, revise e remova imóveis da vitrine pública.</p><form class="admin-form" onsubmit="saveListing(event)"><input id="lTitle" class="full" required placeholder="Título do imóvel"><input id="lPrice" required placeholder="Preço (ex.: R$ 650.000)"><input id="lLocation" required placeholder="Cidade, bairro e estado"><input id="lType" required placeholder="Tipo (casa, apartamento...) "><input id="lRooms" required placeholder="Quartos"><input id="lParking" required placeholder="Vagas"><input id="lArea" required placeholder="Área em m²"><input id="lImage" class="full" required placeholder="URL da foto principal"><textarea id="lDescription" placeholder="Descrição e diferenciais"></textarea><button class="btn btn-gold full">Publicar imóvel</button></form><div class="admin-list"><h3>Imóveis cadastrados</h3>' +
           (a.length
@@ -1203,7 +1213,28 @@
                 })
                 .join("")
             : "<p>Nenhum imóvel novo cadastrado ainda.</p>") +
-          '</div><button class="btn" onclick="closeAdmin()">Sair</button></div>';
+          '</div><div class="admin-list"><h3>Redes sociais</h3><p>Ative os canais e cole o endereço do seu perfil. Eles aparecerão no rodapé do site.</p><form class="social-fields" onsubmit="saveSocialSettings(event)"><label class="social-field"><input type="checkbox" id="socialInstagramOn" ' + (s.instagramOn === false ? "" : "checked") + '><span>Instagram</span><input type="url" id="socialInstagramUrl" value="' + social("instagram") + '" placeholder="https://instagram.com/..." /></label><label class="social-field"><input type="checkbox" id="socialXOn" ' + (s.xOn === false ? "" : "checked") + '><span>X</span><input type="url" id="socialXUrl" value="' + social("x") + '" placeholder="https://x.com/..." /></label><label class="social-field"><input type="checkbox" id="socialFacebookOn" ' + (s.facebookOn === false ? "" : "checked") + '><span>Facebook</span><input type="url" id="socialFacebookUrl" value="' + social("facebook") + '" placeholder="https://facebook.com/..." /></label><label class="social-field"><input type="checkbox" id="socialYoutubeOn" ' + (s.youtubeOn === false ? "" : "checked") + '><span>YouTube</span><input type="url" id="socialYoutubeUrl" value="' + social("youtube") + '" placeholder="https://youtube.com/..." /></label><label class="social-field"><input type="checkbox" id="socialLinkedinOn" ' + (s.linkedinOn === false ? "" : "checked") + '><span>LinkedIn</span><input type="url" id="socialLinkedinUrl" value="' + social("linkedin") + '" placeholder="https://linkedin.com/in/..." /></label><button class="btn btn-gold" type="submit">Salvar redes sociais</button></form></div><button class="btn" onclick="closeAdmin()">Sair</button></div>';
+      }
+      function saveSocialSettings(e) {
+        e.preventDefault();
+        localStorage.setItem("imobSocials", JSON.stringify({
+          instagram: document.querySelector("#socialInstagramUrl").value.trim(), instagramOn: document.querySelector("#socialInstagramOn").checked,
+          x: document.querySelector("#socialXUrl").value.trim(), xOn: document.querySelector("#socialXOn").checked,
+          facebook: document.querySelector("#socialFacebookUrl").value.trim(), facebookOn: document.querySelector("#socialFacebookOn").checked,
+          youtube: document.querySelector("#socialYoutubeUrl").value.trim(), youtubeOn: document.querySelector("#socialYoutubeOn").checked,
+          linkedin: document.querySelector("#socialLinkedinUrl").value.trim(), linkedinOn: document.querySelector("#socialLinkedinOn").checked
+        }));
+        applySocialSettings();
+        alert("Redes sociais atualizadas.");
+      }
+      function applySocialSettings() {
+        var s = JSON.parse(localStorage.getItem("imobSocials") || "{}");
+        [["Instagram", "instagram"], ["X", "x"], ["Facebook", "facebook"], ["Youtube", "youtube"], ["Linkedin", "linkedin"]].forEach(function (item) {
+          var link = document.querySelector("#social" + item[0]);
+          if (!link) return;
+          link.href = s[item[1]] || "#";
+          link.style.display = s[item[1] + "On"] === false || !s[item[1]] ? "none" : "grid";
+        });
       }
       function saveListing(e) {
         e.preventDefault();
@@ -1262,6 +1293,7 @@
         });
       }
       syncListings();
+      applySocialSettings();
     </script>
   </body>
 </html>
