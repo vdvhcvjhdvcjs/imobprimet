@@ -1,5 +1,5 @@
-Warning: truncated output (original token count: 12599)
-Total output lines: 1395
+Warning: truncated output (original token count: 13179)
+Total output lines: 1421
 
 <!doctype html>
 <html lang="pt-BR">
@@ -304,6 +304,8 @@ Total output lines: 1395
         font-size: 17px;
         cursor: pointer;
       }
+      .favorite.active { background: var(--gold); color: white; }
+      .filter-empty { display:none; text-align:center; padding:48px 20px; color:var(--muted); border:1px dashed var(--line); margin-top:22px; }
       .card-body {
         padding: 22px;
       }
@@ -884,15 +886,10 @@ Total output lines: 1395
         </div>
       </section>
       <div class="searchbox">
-        <form
-          onsubmit="
-            event.preventDefault();
-            document.querySelector('#imoveis').scrollIntoView();
-          "
-        >
+        <form onsubmit="searchProperties(event)">
           <div>
             <label>Eu quero</label
-            ><select>
+            ><select id="searchGoal">
               <option>Comprar um imóvel</option>
               <option>Alugar um imóvel</option>
               <option>Vender meu imóvel</option>
@@ -900,7 +897,7 @@ Total output lines: 1395
           </div>
           <div>
             <label>Tipo de imóvel</label
-            ><select>
+            ><select id="searchType">
               <option>Todos os tipos</option>
               <option>Apartamento</option>
               <option>Casa</option>
@@ -908,7 +905,7 @@ Total output lines: 1395
             </select>
           </div>
           <div>
-            <label>Localização</label><input placeholder="Cidade ou bairro" />
+            <label>Localização</label><input id="searchLocation" placeholder="Cidade ou bairro" />
           </div>
           <button class="btn btn-gold">Buscar imóveis</button>
         </form>
@@ -926,7 +923,7 @@ Total output lines: 1395
             </p>
           </div>
           <div class="cards">
-            <article class="card">
+            <article class="card" data-type="casa" data-location="jardim europa são paulo">
               <div
                 class="card-img"
                 style="
@@ -937,62 +934,7 @@ Total output lines: 1395
                 ><button class="favorite">♡</button>
               </div>
               <div class="card-body">
-                <div class="price">R$ 890.000</div>
-                <h3>Casa contemporânea</h3>
-                <div class="location">📍 Jardim Europa, São Paulo</div>
-                <div class="details">
-          …599 tokens truncated…            importante em uma experiência leve, segura e bem orientada — do
-              primeiro contato à entrega das chaves.
-            </p>
-            <div class="checks">
-              <div class="check">
-                <span>✓</span> Atendimento próximo e sem pressão
-              </div>
-              <div class="check">
-                <span>✓</span> Negociação transparente em cada etapa
-              </div>
-              <div class="check">
-                <span>✓</span> Conhecimento profundo da região
-              </div>
-            </div>
-            <a class="btn btn-gold" href="#contato"
-              >Conheça meu atendimento →</a
-            >
-          </div>
-        </div>
-      </section>
-      <section class="process" id="processo">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <div class="eyebrow">Do seu jeito</div>
-              <h2>Comprar pode ser simples.</h2>
-            </div>
-            <p>
-              Você conta seu objetivo. Eu cuido do caminho com estratégia,
-              clareza e atenção aos detalhes.
-            </p>
-          </div>
-          <div class="steps">
-            <div class="step">
-              <div class="number">01</div>
-              <h3>Entendo seu momento</h3>
-              <p>
-                Conversamos sobre seus planos, necessidades e o que realmente
-                importa para você.
-              </p>
-            </div>
-            <div class="step">
-              <div class="number">02</div>
-              <h3>Faço a curadoria</h3>
-              <p>
-                Seleciono opções alinhadas ao seu perfil, orçamento e estilo de
-                vida.
-              </p>
-            </div>
-            <div class="step">
-              <div class="number">03</div>
-              <h3>Acompanho de perto</h3>
+        …1179 tokens truncated…   <h3>Acompanho de perto</h3>
               <p>
                 Visitas, documentação e negociação com segurança e total
                 transparência.
@@ -1174,6 +1116,31 @@ Total output lines: 1395
           encodeURIComponent(p);
         window.open("https://wa.me/5582999999999?text=" + m, "_blank");
       }
+      function searchProperties(e) {
+        e.preventDefault();
+        var type = document.querySelector("#searchType").value.toLowerCase(), location = document.querySelector("#searchLocation").value.trim().toLowerCase(), visible = 0;
+        document.querySelectorAll(".cards > .card").forEach(function(card) {
+          var matchesType = type === "todos os tipos" || (card.dataset.type || "").includes(type.split(" ")[0]);
+          var matchesLocation = !location || (card.dataset.location || card.textContent).toLowerCase().includes(location);
+          card.style.display = matchesType && matchesLocation ? "block" : "none";
+          if (matchesType && matchesLocation) visible++;
+        });
+        document.querySelector("#filterEmpty").style.display = visible ? "none" : "block";
+        document.querySelector("#imoveis").scrollIntoView({behavior:"smooth", block:"start"});
+      }
+      function initFavorites() {
+        var favorites = JSON.parse(localStorage.getItem("imobFavorites") || "[]");
+        document.querySelectorAll(".favorite").forEach(function(button, i) {
+          if (favorites.includes(i)) { button.classList.add("active"); button.textContent = "♥"; }
+          button.setAttribute("aria-label", "Adicionar aos favoritos");
+          button.addEventListener("click", function() {
+            var index = favorites.indexOf(i);
+            if (index >= 0) { favorites.splice(index, 1); button.classList.remove("active"); button.textContent = "♡"; }
+            else { favorites.push(i); button.classList.add("active"); button.textContent = "♥"; }
+            localStorage.setItem("imobFavorites", JSON.stringify(favorites));
+          });
+        });
+      }
       function openAdmin() {
         document.querySelector("#adminModal").classList.add("open");
         renderLogin();
@@ -1305,6 +1272,8 @@ Total output lines: 1395
         a.forEach(function (x) {
           var el = document.createElement("article");
           el.className = "card";
+          el.dataset.type = (x.type || "").toLowerCase();
+          el.dataset.location = (x.location || "").toLowerCase();
           el.innerHTML =
             '<div class="card-img" style="background-image:url(' +
             JSON.stringify(x.image) +
@@ -1332,6 +1301,7 @@ Total output lines: 1395
         document.querySelector("#adminContent").innerHTML = '<div class="eyebrow">Detalhes do imóvel</div><h2>' + x.title + '</h2><p>' + (x.description || "Imóvel selecionado da nossa curadoria.") + '</p><div class="cards" style="margin-top:22px">' + photos.map(function (photo) { return '<div class="card-img" style="background-image:url(' + JSON.stringify(photo) + ');height:220px"></div>'; }).join("") + '</div><a class="btn btn-gold" style="margin-top:24px" target="_blank" href="https://wa.me/5582999999999?text=' + encodeURIComponent("Olá! Tenho interesse no imóvel " + x.title) + '">Tenho interesse neste imóvel →</a>';
       }
       syncListings();
+      initFavorites();
       applySocialSettings();
     </script>
   </body>
