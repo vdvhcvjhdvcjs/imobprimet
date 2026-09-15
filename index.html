@@ -1,5 +1,5 @@
-Warning: truncated output (original token count: 12071)
-Total output lines: 1379
+Warning: truncated output (original token count: 12599)
+Total output lines: 1395
 
 <!doctype html>
 <html lang="pt-BR">
@@ -941,58 +941,7 @@ Total output lines: 1379
                 <h3>Casa contemporânea</h3>
                 <div class="location">📍 Jardim Europa, São Paulo</div>
                 <div class="details">
-          …71 tokens truncated…                 background-image: url(&quot;https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80&quot;);
-                "
-              >
-                <span class="badge">Novo</span
-                ><button class="favorite">♡</button>
-              </div>
-              <div class="card-body">
-                <div class="price">R$ 1.250.000</div>
-                <h3>Apartamento com vista</h3>
-                <div class="location">📍 Ponta Verde, Maceió</div>
-                <div class="details">
-                  <span>🛏 3 quartos</span><span>♧ 2 vagas</span
-                  ><span>⌂ 142 m²</span>
-                </div>
-              </div>
-            </article>
-            <article class="card">
-              <div
-                class="card-img"
-                style="
-                  background-image: url(&quot;https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80&quot;);
-                "
-              >
-                <span class="badge">Exclusivo</span
-                ><button class="favorite">♡</button>
-              </div>
-              <div class="card-body">
-                <div class="price">R$ 640.000</div>
-                <h3>Lar para chamar de seu</h3>
-                <div class="location">📍 Farol, Maceió</div>
-                <div class="details">
-                  <span>🛏 2 quartos</span><span>♧ 1 vaga</span
-                  ><span>⌂ 98 m²</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-      <section id="sobre">
-        <div class="container about">
-          <div class="about-image">
-            <div class="experience">
-              <strong>8+</strong>anos realizando negócios com confiança
-            </div>
-          </div>
-          <div>
-            <div class="eyebrow">Muito prazer</div>
-            <h2>Mais do que imóveis, eu conecto pessoas a novos começos.</h2>
-            <p>
-              Sou corretor de imóveis especializado em transformar uma decisão
-              importante em uma experiência leve, segura e bem orientada — do
+          …599 tokens truncated…            importante em uma experiência leve, segura e bem orientada — do
               primeiro contato à entrega das chaves.
             </p>
             <div class="checks">
@@ -1273,6 +1222,22 @@ Total output lines: 1379
                 .join("")
             : "<p>Nenhum imóvel novo cadastrado ainda.</p>") +
           '</div><div class="admin-list"><h3>Redes sociais</h3><p>Ative os canais e cole o endereço do seu perfil. Eles aparecerão no rodapé do site.</p><form class="social-fields" onsubmit="saveSocialSettings(event)"><label class="social-field"><input type="checkbox" id="socialInstagramOn" ' + (s.instagramOn === false ? "" : "checked") + '><span>Instagram</span><input type="url" id="socialInstagramUrl" value="' + social("instagram") + '" placeholder="https://instagram.com/..." /></label><label class="social-field"><input type="checkbox" id="socialXOn" ' + (s.xOn === false ? "" : "checked") + '><span>X</span><input type="url" id="socialXUrl" value="' + social("x") + '" placeholder="https://x.com/..." /></label><label class="social-field"><input type="checkbox" id="socialFacebookOn" ' + (s.facebookOn === false ? "" : "checked") + '><span>Facebook</span><input type="url" id="socialFacebookUrl" value="' + social("facebook") + '" placeholder="https://facebook.com/..." /></label><label class="social-field"><input type="checkbox" id="socialYoutubeOn" ' + (s.youtubeOn === false ? "" : "checked") + '><span>YouTube</span><input type="url" id="socialYoutubeUrl" value="' + social("youtube") + '" placeholder="https://youtube.com/..." /></label><label class="social-field"><input type="checkbox" id="socialLinkedinOn" ' + (s.linkedinOn === false ? "" : "checked") + '><span>LinkedIn</span><input type="url" id="socialLinkedinUrl" value="' + social("linkedin") + '" placeholder="https://linkedin.com/in/..." /></label><button class="btn btn-gold" type="submit">Salvar redes sociais</button></form></div><button class="btn" onclick="closeAdmin()">Sair</button></div>';
+        document.querySelector("#adminContent").insertAdjacentHTML("afterbegin", '<div class="admin-list" style="margin-top:0"><h3>Identidade e atendimento</h3><p>Altere as informações principais exibidas no site.</p><form class="admin-form" onsubmit="saveSiteSettings(event)"><input id="siteName" placeholder="Nome do site"><input id="siteCreci" placeholder="CRECI"><input id="sitePhone" placeholder="WhatsApp e telefone"><input id="siteEmail" type="email" placeholder="E-mail profissional"><input id="siteRegion" class="full" placeholder="Região de atendimento"><button class="btn btn-gold full">Salvar informações do site</button></form></div>');
+        applySiteSettings();
+      }
+      function saveSiteSettings(e) {
+        e.preventDefault();
+        localStorage.setItem("imobSite", JSON.stringify({name:siteName.value.trim(), creci:siteCreci.value.trim(), phone:sitePhone.value.trim(), email:siteEmail.value.trim(), region:siteRegion.value.trim()}));
+        applySiteSettings(); alert("Informações do site atualizadas.");
+      }
+      function applySiteSettings() {
+        var s = JSON.parse(localStorage.getItem("imobSite") || "{}");
+        var name = s.name || "Tarciso Prime", creci = s.creci || "CRECI 00000-F", phone = s.phone || "(82) 99999-9999", email = s.email || "contato@imobprime.com.br", region = s.region || "Maceió e região";
+        document.title = name + " | Seu próximo endereço começa aqui";
+        var title = document.querySelector(".footer-title"), contact = document.querySelector(".footer-contact");
+        if (title) title.textContent = name;
+        if (contact) { contact.children[0].textContent = "WhatsApp: " + phone; contact.children[0].href = "https://wa.me/" + phone.replace(/\D/g, ""); contact.children[1].textContent = email; contact.children[1].href = "mailto:" + email; contact.children[2].textContent = region; contact.children[4].textContent = creci; }
+        ["#siteName","#siteCreci","#sitePhone","#siteEmail","#siteRegion"].forEach(function(id, i){ var el=document.querySelector(id); if(el) el.value=[name,creci,phone,email,region][i]; });
       }
       function saveSocialSettings(e) {
         e.preventDefault();
