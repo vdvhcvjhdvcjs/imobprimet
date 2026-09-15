@@ -301,8 +301,6 @@
         font-size: 17px;
         cursor: pointer;
       }
-      .favorite.active { background: var(--gold); color: white; }
-      .filter-empty { display:none; text-align:center; padding:48px 20px; color:var(--muted); border:1px dashed var(--line); margin-top:22px; }
       .card-body {
         padding: 22px;
       }
@@ -883,10 +881,15 @@
         </div>
       </section>
       <div class="searchbox">
-        <form onsubmit="searchProperties(event)">
+        <form
+          onsubmit="
+            event.preventDefault();
+            document.querySelector('#imoveis').scrollIntoView();
+          "
+        >
           <div>
             <label>Eu quero</label
-            ><select id="searchGoal">
+            ><select>
               <option>Comprar um imóvel</option>
               <option>Alugar um imóvel</option>
               <option>Vender meu imóvel</option>
@@ -894,7 +897,7 @@
           </div>
           <div>
             <label>Tipo de imóvel</label
-            ><select id="searchType">
+            ><select>
               <option>Todos os tipos</option>
               <option>Apartamento</option>
               <option>Casa</option>
@@ -902,7 +905,7 @@
             </select>
           </div>
           <div>
-            <label>Localização</label><input id="searchLocation" placeholder="Cidade ou bairro" />
+            <label>Localização</label><input placeholder="Cidade ou bairro" />
           </div>
           <button class="btn btn-gold">Buscar imóveis</button>
         </form>
@@ -920,7 +923,7 @@
             </p>
           </div>
           <div class="cards">
-            <article class="card" data-type="casa" data-location="jardim europa são paulo">
+            <article class="card">
               <div
                 class="card-img"
                 style="
@@ -931,7 +934,62 @@
                 ><button class="favorite">♡</button>
               </div>
               <div class="card-body">
-        …1179 tokens truncated…   <h3>Acompanho de perto</h3>
+                <div class="price">R$ 890.000</div>
+                <h3>Casa contemporânea</h3>
+                <div class="location">📍 Jardim Europa, São Paulo</div>
+                <div class="details">
+          …599 tokens truncated…            importante em uma experiência leve, segura e bem orientada — do
+              primeiro contato à entrega das chaves.
+            </p>
+            <div class="checks">
+              <div class="check">
+                <span>✓</span> Atendimento próximo e sem pressão
+              </div>
+              <div class="check">
+                <span>✓</span> Negociação transparente em cada etapa
+              </div>
+              <div class="check">
+                <span>✓</span> Conhecimento profundo da região
+              </div>
+            </div>
+            <a class="btn btn-gold" href="#contato"
+              >Conheça meu atendimento →</a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="process" id="processo">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Do seu jeito</div>
+              <h2>Comprar pode ser simples.</h2>
+            </div>
+            <p>
+              Você conta seu objetivo. Eu cuido do caminho com estratégia,
+              clareza e atenção aos detalhes.
+            </p>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="number">01</div>
+              <h3>Entendo seu momento</h3>
+              <p>
+                Conversamos sobre seus planos, necessidades e o que realmente
+                importa para você.
+              </p>
+            </div>
+            <div class="step">
+              <div class="number">02</div>
+              <h3>Faço a curadoria</h3>
+              <p>
+                Seleciono opções alinhadas ao seu perfil, orçamento e estilo de
+                vida.
+              </p>
+            </div>
+            <div class="step">
+              <div class="number">03</div>
+              <h3>Acompanho de perto</h3>
               <p>
                 Visitas, documentação e negociação com segurança e total
                 transparência.
@@ -1073,7 +1131,7 @@
           escolhas.<div class="social-links"><a id="socialInstagram" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.5 6a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/></svg></a><a id="socialX" class="social-link" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.24l-4.89-6.39L6.48 22H3.37l7.24-8.28L2.8 2h6.4l4.42 5.84L18.9 2Zm-1.1 17.7h1.73L8.26 4.18H6.4L17.8 19.7Z"/></svg></a><a id="socialFacebook" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">f</a><a id="socialYoutube" class="social-link" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.9V8.1l6.5 3.9-6.5 3.9Z"/></svg></a><a id="socialLinkedin" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">in</a></div>
         </div>
         <div><div class="footer-heading">Navegação rápida</div><div class="footer-links"><a href="#imoveis">Imóveis em destaque</a><a href="#sobre">Sobre mim</a><a href="#processo">Como funciona</a><a href="#perfil">Seu perfil</a><a href="#contato">Fale comigo</a></div></div>
-        <div><div class="footer-heading">Atendimento</div><div class="footer-contact"><a href="https://wa.me/5582996986040" target="_blank" rel="noopener">WhatsApp: (82) 99999-9999</a><a href="mailto:contato@imobprime.com.br">contato@imobprime.com.br</a><span>Maceió e região</span><span>Seg — Sex: 8h às 18h</span><span>CRECI 00000-F</span></div></div>
+        <div><div class="footer-heading">Atendimento</div><div class="footer-contact"><a href="https://wa.me/5582999999999" target="_blank" rel="noopener">WhatsApp: (82) 99999-9999</a><a href="mailto:contato@imobprime.com.br">contato@imobprime.com.br</a><span>Maceió e região</span><span>Seg — Sex: 8h às 18h</span><span>CRECI 00000-F</span></div></div>
       </div>
       <div class="container footer-bottom"><div>© 2026 Tarciso Prime. Todos os direitos reservados.</div><div><button class="secret-link" onclick="openAdmin()">Redes</button> · Privacidade · Feito para boas escolhas.</div></div>
     </footer>
@@ -1086,7 +1144,7 @@
     </div>
     <a
       class="whatsapp"
-      href="https://wa.me/5582996986040?text=Ol%C3%A1!%20Vi%20seu%20site%20e%20quero%20encontrar%20um%20im%C3%B3vel."
+      href="https://wa.me/5582999999999?text=Ol%C3%A1!%20Vi%20seu%20site%20e%20quero%20encontrar%20um%20im%C3%B3vel."
       target="_blank"
       aria-label="Falar no WhatsApp"
       ><svg viewBox="0 0 24 24" width="29" height="29" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.8L.2 24l6.6-1.7a11.7 11.7 0 0 0 5.3 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.3-6.1-3.5-8.3Zm-8.4 18.1h-.1c-1.7 0-3.3-.5-4.8-1.3l-.3-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.3 4.7Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.5.9-1.7.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.6s1.2 3 1.4 3.2c.2.2 2.3 3.5 5.6 4.9 2.1.9 2.6.8 3 .7.5-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4Z"/></svg></a
@@ -1095,7 +1153,7 @@
       function sendMessage(e) {
         e.preventDefault();
         window.open(
-          "https://wa.me/5582996986040?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20um%20im%C3%B3vel.",
+          "https://wa.me/5582999999999?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20um%20im%C3%B3vel.",
           "_blank",
         );
       }
@@ -1113,31 +1171,6 @@
           encodeURIComponent(p);
         window.open("https://wa.me/5582996986040?text=" + m, "_blank");
       }
-      function searchProperties(e) {
-        e.preventDefault();
-        var type = document.querySelector("#searchType").value.toLowerCase(), location = document.querySelector("#searchLocation").value.trim().toLowerCase(), visible = 0;
-        document.querySelectorAll(".cards > .card").forEach(function(card) {
-          var matchesType = type === "todos os tipos" || (card.dataset.type || "").includes(type.split(" ")[0]);
-          var matchesLocation = !location || (card.dataset.location || card.textContent).toLowerCase().includes(location);
-          card.style.display = matchesType && matchesLocation ? "block" : "none";
-          if (matchesType && matchesLocation) visible++;
-        });
-        document.querySelector("#filterEmpty").style.display = visible ? "none" : "block";
-        document.querySelector("#imoveis").scrollIntoView({behavior:"smooth", block:"start"});
-      }
-      function initFavorites() {
-        var favorites = JSON.parse(localStorage.getItem("imobFavorites") || "[]");
-        document.querySelectorAll(".favorite").forEach(function(button, i) {
-          if (favorites.includes(i)) { button.classList.add("active"); button.textContent = "♥"; }
-          button.setAttribute("aria-label", "Adicionar aos favoritos");
-          button.addEventListener("click", function() {
-            var index = favorites.indexOf(i);
-            if (index >= 0) { favorites.splice(index, 1); button.classList.remove("active"); button.textContent = "♡"; }
-            else { favorites.push(i); button.classList.add("active"); button.textContent = "♥"; }
-            localStorage.setItem("imobFavorites", JSON.stringify(favorites));
-          });
-        });
-      }
       function openAdmin() {
         document.querySelector("#adminModal").classList.add("open");
         renderLogin();
@@ -1147,13 +1180,13 @@
       }
       function renderLogin() {
         document.querySelector("#adminContent").innerHTML =
-          '<div class="login-box"><div class="eyebrow">Área reservada</div><h2>Redes</h2><p>Acesse o painel para administrar os imóveis publicados no site.</p><form class="form" onsubmit="loginAdmin(event)"><label>Usuário</label><input id="adminUser" required autocomplete="username"><label>Senha</label><input id="adminPass" required type="password" autocomplete="current-password"><button class="btn btn-gold">Entrar no painel →</button><div class="admin-note">Acesso inicial: usuário <b>admin</b> · senha <b>123456</b>. Altere as credenciais quando conectar o painel a um servidor.</div></form></div>';
+          '<div class="login-box"><div class="eyebrow">Área reservada</div><h2>Redes</h2><p>Acesse o painel para administrar os imóveis publicados no site.</p><form class="form" onsubmit="loginAdmin(event)"><label>Usuário</label><input id="adminUser" required autocomplete="username"><label>Senha</label><input id="adminPass" required type="password" autocomplete="current-password"><button class="btn btn-gold">Entrar no painel →</button><div class="admin-note">Acesso inicial: usuário <b>...</b> · senha <b>123456</b>. Altere as credenciais quando conectar o painel a um servidor.</div></form></div>';
       }
       function loginAdmin(e) {
         e.preventDefault();
         if (
-          document.querySelector("#adminUser").value === "admin" &&
-          document.querySelector("#adminPass").value === "123456"
+          document.querySelector("#adminUser").value === "Ruanadm1" &&
+          document.querySelector("#adminPass").value === "1978Ru@n28112001"
         ) {
           renderPanel();
         } else alert("Usuário ou senha inválidos.");
@@ -1196,7 +1229,7 @@
       }
       function applySiteSettings() {
         var s = JSON.parse(localStorage.getItem("imobSite") || "{}");
-        var name = s.name || "Tarciso Prime", creci = s.creci || "CRECI 00000-F", phone = s.phone || "(82) 99999-9999", email = s.email || "contato@imobprime.com.br", region = s.region || "Maceió e região";
+        var name = s.name || "Tarciso Prime", creci = s.creci || "CRECI 00000-F", phone = s.phone || "(82) 99698-6040", email = s.email || "contato@imobprime.com.br", region = s.region || "Maceió e região";
         document.title = name + " | Seu próximo endereço começa aqui";
         var title = document.querySelector(".footer-title"), contact = document.querySelector(".footer-contact");
         if (title) title.textContent = name;
@@ -1269,8 +1302,6 @@
         a.forEach(function (x) {
           var el = document.createElement("article");
           el.className = "card";
-          el.dataset.type = (x.type || "").toLowerCase();
-          el.dataset.location = (x.location || "").toLowerCase();
           el.innerHTML =
             '<div class="card-img" style="background-image:url(' +
             JSON.stringify(x.image) +
@@ -1295,11 +1326,10 @@
         if (!x) return;
         var photos = [x.image].concat(x.gallery || []).filter(Boolean);
         document.querySelector("#adminModal").classList.add("open");
-        document.querySelector("#adminContent").innerHTML = '<div class="eyebrow">Detalhes do imóvel</div><h2>' + x.title + '</h2><p>' + (x.description || "Imóvel selecionado da nossa curadoria.") + '</p><div class="cards" style="margin-top:22px">' + photos.map(function (photo) { return '<div class="card-img" style="background-image:url(' + JSON.stringify(photo) + ');height:220px"></div>'; }).join("") + '</div><a class="btn btn-gold" style="margin-top:24px" target="_blank" href="https://wa.me/5582996986040?text=' + encodeURIComponent("Olá! Tenho interesse no imóvel " + x.title) + '">Tenho interesse neste imóvel →</a>';
+        document.querySelector("#adminContent").innerHTML = '<div class="eyebrow">Detalhes do imóvel</div><h2>' + x.title + '</h2><p>' + (x.description || "Imóvel selecionado da nossa curadoria.") + '</p><div class="cards" style="margin-top:22px">' + photos.map(function (photo) { return '<div class="card-img" style="background-image:url(' + JSON.stringify(photo) + ');height:220px"></div>'; }).join("") + '</div><a class="btn btn-gold" style="margin-top:24px" target="_blank" href="https://wa.me/5582999999999?text=' + encodeURIComponent("Olá! Tenho interesse no imóvel " + x.title) + '">Tenho interesse neste imóvel →</a>';
       }
       syncListings();
-      initFavorites();
       applySocialSettings();
     </script>
   </body>
-</html>
+</html>  
