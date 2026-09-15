@@ -265,6 +265,11 @@
         border-radius: 5px;
         overflow: hidden;
         box-shadow: 0 4px 18px rgba(20, 35, 42, 0.05);
+        transition: transform 0.25s, box-shadow 0.25s;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
       }
       .card-img {
         height: 245px;
@@ -1193,7 +1198,7 @@
             return s[key] || "";
           };
         document.querySelector("#adminContent").innerHTML =
-          '<div><div class="eyebrow">Painel administrativo</div><h2>Gerenciar imóveis</h2><p>Cadastre, revise e remova imóveis da vitrine pública.</p><form class="admin-form" onsubmit="saveListing(event)"><input id="lTitle" class="full" required placeholder="Título do imóvel"><input id="lPrice" required placeholder="Preço (ex.: R$ 650.000)"><input id="lLocation" required placeholder="Cidade, bairro e estado"><input id="lType" required placeholder="Tipo (casa, apartamento...) "><input id="lRooms" required placeholder="Quartos"><input id="lParking" required placeholder="Vagas"><input id="lArea" required placeholder="Área em m²"><input id="lImage" class="full" required placeholder="URL da foto principal"><textarea id="lDescription" placeholder="Descrição e diferenciais"></textarea><button class="btn btn-gold full">Publicar imóvel</button></form><div class="admin-list"><h3>Imóveis cadastrados</h3>' +
+          '<div><div class="eyebrow">Painel administrativo</div><h2>Gerenciar imóveis</h2><p>Cadastre, revise e remova imóveis da vitrine pública.</p><form class="admin-form" onsubmit="saveListing(event)"><input id="lEditIndex" type="hidden" value="-1"><input id="lTitle" class="full" required placeholder="Título do imóvel"><input id="lPrice" required placeholder="Preço (ex.: R$ 650.000)"><input id="lLocation" required placeholder="Cidade, bairro e estado"><input id="lType" required placeholder="Tipo (casa, apartamento...) "><input id="lRooms" required placeholder="Quartos"><input id="lParking" required placeholder="Vagas"><input id="lArea" required placeholder="Área em m²"><input id="lImage" class="full" required placeholder="URL da imagem principal (capa)"><input id="lGallery" class="full" placeholder="Outras imagens: uma URL por linha"><textarea id="lDescription" placeholder="Descrição e diferenciais"></textarea><button class="btn btn-gold full" id="listingSubmit">Publicar imóvel</button></form><div class="admin-list"><h3>Imóveis cadastrados</h3>' +
           (a.length
             ? a
                 .map(function (x, i) {
@@ -1239,7 +1244,7 @@
       function saveListing(e) {
         e.preventDefault();
         var a = JSON.parse(localStorage.getItem("imobListings") || "[]");
-        a.push({
+        var listing = {
           title: lTitle.value,
           price: lPrice.value,
           location: lLocation.value,
@@ -1248,13 +1253,15 @@
           parking: lParking.value,
           area: lArea.value,
           image: lImage.value,
+          gallery: lGallery.value.split(/\n|,/).map(function (x) { return x.trim(); }).filter(Boolean),
           description: lDescription.value,
-        });
+        };
+        var editIndex = Number(lEditIndex.value);
+        if (editIndex >= 0 && a[editIndex]) a[editIndex] = listing;
+        else a.push(listing);
         localStorage.setItem("imobListings", JSON.stringify(a));
         renderPanel();
-        alert(
-          "Imóvel publicado com sucesso. Ele aparecerá na vitrine após atualizar a página.",
-        );
+        alert(editIndex >= 0 ? "Imóvel atualizado com sucesso." : "Imóvel publicado com sucesso.");
       }
       function removeListing(i) {
         var a = JSON.parse(localStorage.getItem("imobListings") || "[]");
@@ -1263,9 +1270,15 @@
         renderPanel();
       }
       function editListing(i) {
-        alert(
-          "Para editar, remova este cadastro e publique os dados atualizados. A edição completa será conectada ao banco de dados na próxima etapa.",
-        );
+        var a = JSON.parse(localStorage.getItem("imobListings") || "[]"), x = a[i];
+        if (!x) return;
+        renderPanel();
+        lEditIndex.value = i;
+        lTitle.value = x.title || ""; lPrice.value = x.price || ""; lLocation.value = x.location || "";
+        lType.value = x.type || ""; lRooms.value = x.rooms || ""; lParking.value = x.parking || "";
+        lArea.value = x.area || ""; lImage.value = x.image || ""; lGallery.value = (x.gallery || []).join("\n");
+        lDescription.value = x.description || ""; listingSubmit.textContent = "Salvar alterações";
+        document.querySelector("#lTitle").scrollIntoView({behavior: "smooth", block: "center"});
       }
       function syncListings() {
         var a = JSON.parse(localStorage.getItem("imobListings") || "[]"),
@@ -1288,9 +1301,16 @@
             x.parking +
             " vagas</span><span>⌂ " +
             x.area +
-            " m²</span></div></div>";
+            " m²</span></div><button class=\"btn btn-outline\" style=\"margin-top:18px;width:100%;color:var(--navy);border-color:var(--line)\" onclick='showPropertyDetails(" + i + ")'>Ver detalhes e fotos</button></div>";
           c.appendChild(el);
         });
+      }
+      function showPropertyDetails(i) {
+        var a = JSON.parse(localStorage.getItem("imobListings") || "[]"), x = a[i];
+        if (!x) return;
+        var photos = [x.image].concat(x.gallery || []).filter(Boolean);
+        document.querySelector("#adminModal").classList.add("open");
+        document.querySelector("#adminContent").innerHTML = '<div class="eyebrow">Detalhes do imóvel</div><h2>' + x.title + '</h2><p>' + (x.description || "Imóvel selecionado da nossa curadoria.") + '</p><div class="cards" style="margin-top:22px">' + photos.map(function (photo) { return '<div class="card-img" style="background-image:url(' + JSON.stringify(photo) + ');height:220px"></div>'; }).join("") + '</div><a class="btn btn-gold" style="margin-top:24px" target="_blank" href="https://wa.me/5582999999999?text=' + encodeURIComponent("Olá! Tenho interesse no imóvel " + x.title) + '">Tenho interesse neste imóvel →</a>';
       }
       syncListings();
       applySocialSettings();
