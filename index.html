@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Encontre o imóvel ideal com atendimento próximo, transparente e personalizado."
+    />
+    <title>Imob Prime | Seu próximo endereço começa aqui</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #0d2433;
+        --ink: #17212b;
+        --muted: #64727c;
+        --cream: #f7f5f0;
+        --line: #e6e9e8;
+        --gold: #c49a5a;
+        --white: #fff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--white);
+        font-family: "DM Sans", sans-serif;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      .container {
+        width: min(1160px, calc(100% - 40px));
+        margin: auto;
+      }
+      .topbar {
+        background: var(--navy);
+        color: #dce7e9;
+        font-size: 13px;
+        padding: 10px 0;
+      }
+      .topbar .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      header {
+        position: absolute;
+        top: 38px;
+        z-index: 2;
+        width: 100%;
+        color: white;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 25px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        font-size: 16px;
+      }
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--gold);
+        display: grid;
+        place-items: center;
+        color: var(--gold);
+        font-family: serif;
+        font-size: 22px;
+      }
+      .navlinks {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        font-size: 14px;
+      }
+      .navlinks a {
+        opacity: 0.9;
+      }
+      .navlinks a:hover {
+        color: #e5c891;
+      }
+      .nav-cta {
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        padding: 11px 18px;
+        border-radius: 4px;
+      }
+      .menu {
+        display: none;
+        background: none;
+        color: white;
+        border: 0;
+        font-size: 26px;
+      }
+      .hero {
+        min-height: 700px;
+        color: white;
+        position: relative;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(7, 27, 39, 0.9),
+            rgba(7, 27, 39, 0.55) 52%,
+            rgba(7, 27, 39, 0.18)
+          ),
+          url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2200&q=85")
+            center/cover;
+        display: flex;
+        align-items: center;
+      }
+      .hero-content {
+        padding-top: 95px;
+        max-width: 640px;
+      }
+      .eyebrow {
+        color: #dfbd7f;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+      }
+      h1 {
+        font-size: clamp(44px, 6vw, 76px);
+        line-height: 1.04;
+        letter-spacing: -0.03em;
+      }
+      .hero p {
+        color: #e5ebeb;
+        font-size: 18px;
+        line-height: 1.65;
+        max-width: 520px;
+        margin: 26px 0 34px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 4px;
+        padding: 14px 22px;
+        font-weight: 700;
+        font-size: 14px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .btn-gold {
+        background: var(--gold);
+        color: white;
+      }
+      .btn-gold:hover {
+        background: #b98a48;
+        transform: translateY(-2px);
+      }
+      .btn-outline {
+        border-color: rgba(255, 255, 255, 0.6);
+        color: white;
+        margin-left: 10px;
+      }
+      .btn-outline:hover {
+        background: white;
+        color: var(--navy);
+      }
+      .searchbox {
+        background: white;
+        color: var(--ink);
+        width: min(1020px, calc(100% - 40px));
+        margin: -54px auto 0;
+        position: relative;
+        padding: 22px;
+        box-shadow: 0 15px 45px rgba(16, 34, 44, 0.14);
+        border-radius: 5px;
+      }
+      .searchbox form {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 150px;
+        gap: 12px;
+      }
+      label {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 7px;
+      }
+      select,
+      .searchbox input {
+        width: 100%;
+        border: 1px solid var(--line);
+        padding: 13px;
+        color: var(--ink);
+        background: #fff;
+        border-radius: 3px;
+        outline: 0;
+      }
+      section {
+        padding: 100px 0;
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 38px;
+      }
+      .section-head h2 {
+        font-size: 44px;
+        line-height: 1.1;
+      }
+      .section-head p {
+        color: var(--muted);
+        max-width: 390px;
+        line-height: 1.6;
+        margin: 0;
+      }
+      .listings {
+        background: var(--cream);
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      .card {
+        background: white;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 4px 18px rgba(20, 35, 42, 0.05);
+      }
+      .card-img {
+        height: 245px;
+        position: relative;
+        background: center/cover;
+      }
+      .badge {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: var(--navy);
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 7px 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .favorite {
+        position: absolute;
+        right: 16px;
+        top: 15px;
+        width: 34px;
+        height: 34px;
+        border: 0;
+        border-radius: 50%;
+        background: white;
+        color: var(--navy);
+        font-size: 17px;
+        cursor: pointer;
+      }
+      .card-body {
+        padding: 22px;
+      }
+      .card-body h3 {
+        font-size: 24px;
+      }
+      .location {
+        color: var(--muted);
+        font-size: 13px;
+        margin: 8px 0 18px;
+      }
+      .details {
+        display: flex;
+        gap: 15px;
+        padding-top: 15px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .price {
+        color: var(--navy);
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+      .about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .about-image {
+        height: 520px;
+        background: url("https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1100&q=85")
+          center/cover;
+        position: relative;
+      }
+      .experience {
+        position: absolute;
+        right: -35px;
+        bottom: 32px;
+        background: var(--gold);
+        color: white;
+        padding: 24px;
+        width: 155px;
+      }
+      .experience strong {
+        display: block;
+        font: 600 43px "Playfair Display";
+      }
+      .about h2 {
+        font-size: 47px;
+        line-height: 1.12;
+        margin-bottom: 23px;
+      }
+      .about p {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+      .checks {
+        margin: 28px 0;
+        display: grid;
+        gap: 15px;
+      }
+      .check {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        font-weight: 600;
+        font-size: 14px;
+      }
+      .check span {
+        color: var(--gold);
+        font-size: 20px;
+      }
+      .process {
+        background: var(--navy);
+        color: white;
+      }
+      .process .section-head p {
+        color: #b7c5c8;
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+      }
+      .step {
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        padding-top: 19px;
+      }
+      .number {
+        color: var(--gold);
+        font: 600 28px "Playfair Display";
+      }
+      .step h3 {
+        font-size: 21px;
+        margin: 25px 0 11px;
+      }
+      .step p {
+        color: #b7c5c8;
+        line-height: 1.6;
+        font-size: 14px;
+      }
+      .testimonial {
+        background: var(--cream);
+        text-align: center;
+      }
+      .quote {
+        max-width: 740px;
+        margin: auto;
+      }
+      .quote-mark {
+        color: var(--gold);
+        font: 70px Georgia;
+        height: 57px;
+      }
+      .quote p {
+        font: 500 28px/1.45 "Playfair Display";
+      }
+      .quote small {
+        color: var(--muted);
+      }
+      .contact {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .contact h2 {
+        font-size: 48px;
+        line-height: 1.1;
+      }
+      .contact p {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .contact-info {
+        margin-top: 35px;
+        display: grid;
+        gap: 18px;
+      }
+      .contact-info div {
+        display: flex;
+        gap: 13px;
+        align-items: center;
+        font-size: 14px;
+      }
+      .contact-info b {
+        color: var(--gold);
+        font-size: 20px;
+        width: 25px;
+      }
+      .form {
+        background: var(--cream);
+        padding: 30px;
+        border-radius: 5px;
+      }
+      .form input,
+      .form textarea,
+      .form select {
+        width: 100%;
+        border: 1px solid var(--line);
+        background: white;
+        padding: 14px;
+        margin-bottom: 15px;
+        border-radius: 3px;
+        outline: 0;
+      }
+      .form textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+      .form .btn {
+        width: 100%;
+      }
+      footer {
+        background: #091b27;
+        color: #c4d0d2;
+        padding: 28px 0;
+        font-size: 12px;
+      }
+      footer .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .whatsapp {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        width: 57px;
+        height: 57px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: #22c86a;
+        color: white;
+        font-size: 27px;
+        box-shadow: 0 5px 18px #0003;
+        z-index: 5;
+      }
+      @media (max-width: 800px) {
+        .topbar .container span:first-child {
+          display: none;
+        }
+        header {
+          top: 31px;
+        }
+        .navlinks {
+          display: none;
+        }
+        .menu {
+          display: block;
+        }
+        .hero {
+          min-height: 650px;
+        }
+        .hero-content {
+          padding-top: 90px;
+        }
+        .btn-outline {
+          margin-left: 0;
+          margin-top: 10px;
+        }
+        .hero .btn {
+          width: 100%;
+        }
+        .searchbox {
+          margin-top: -28px;
+        }
+        .searchbox form,
+        .cards,
+        .steps {
+          grid-template-columns: 1fr;
+        }
+        .section-head,
+        .about,
+        .contact {
+          display: block;
+        }
+        .section-head p {
+          margin-top: 15px;
+        }
+        section {
+          padding: 72px 0;
+        }
+        .cards {
+          gap: 18px;
+        }
+        .about-image {
+          height: 380px;
+          margin-bottom: 65px;
+        }
+        .experience {
+          right: 15px;
+        }
+        .about h2,
+        .contact h2 {
+          font-size: 38px;
+        }
+        .about {
+          gap: 0;
+        }
+        .contact-info {
+          margin-bottom: 35px;
+        }
+        footer .container {
+          display: block;
+          text-align: center;
+        }
+        footer .container div + div {
+          margin-top: 12px;
+        }
+      }
+      .profile {
+        background: #fff;
+      }
+      .profile-box {
+        display: grid;
+        grid-template-columns: 1fr 1.05fr;
+        gap: 55px;
+        align-items: center;
+      }
+      .profile h2 {
+        font-size: 44px;
+        line-height: 1.12;
+      }
+      .profile-copy {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+      .profile-form {
+        background: var(--cream);
+        padding: 28px;
+        border-radius: 5px;
+      }
+      .profile-form select,
+      .profile-form input {
+        width: 100%;
+        border: 1px solid var(--line);
+        background: white;
+        padding: 14px;
+        margin-bottom: 15px;
+        border-radius: 3px;
+        outline: 0;
+      }
+      .profile-form .btn {
+        width: 100%;
+      }
+      .trust-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 35px;
+      }
+      .trust-item {
+        border: 1px solid var(--line);
+        padding: 17px;
+        background: white;
+      }
+      .trust-item b {
+        display: block;
+        color: var(--navy);
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+      .trust-item span {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+      @media (max-width: 800px) {
+        .profile-box {
+          display: block;
+        }
+        .profile h2 {
+          font-size: 38px;
+        }
+        .profile-form {
+          margin-top: 28px;
+        }
+        .trust-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      .secret-link {
+        color: #6f858d;
+        opacity: 0.3;
+        cursor: pointer;
+        margin-left: 18px;
+      }
+      .secret-link:hover {
+        opacity: 1;
+        color: #dfbd7f;
+      }
+      .admin-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 18, 27, 0.78);
+        z-index: 20;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .admin-modal.open {
+        display: flex;
+      }
+      .admin-card {
+        background: white;
+        color: var(--ink);
+        width: min(920px, 100%);
+        max-height: 92vh;
+        overflow: auto;
+        border-radius: 7px;
+        padding: 32px;
+        position: relative;
+      }
+      .admin-card h2 {
+        font-size: 34px;
+        margin-bottom: 8px;
+      }
+      .admin-card p {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .admin-close {
+        position: absolute;
+        right: 20px;
+        top: 18px;
+        border: 0;
+        background: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: var(--muted);
+      }
+      .login-box {
+        max-width: 390px;
+        margin: 10px auto;
+      }
+      .admin-form {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        margin-top: 22px;
+      }
+      .admin-form input,
+      .admin-form select,
+      .admin-form textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        padding: 12px;
+        border-radius: 3px;
+      }
+      .admin-form textarea {
+        grid-column: 1/-1;
+        min-height: 80px;
+      }
+      .admin-form .full {
+        grid-column: 1/-1;
+      }
+      .admin-list {
+        margin-top: 32px;
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+      }
+      .admin-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        align-items: center;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 14px;
+      }
+      .admin-item small {
+        color: var(--muted);
+      }
+      .admin-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .admin-actions button {
+        border: 1px solid var(--line);
+        background: white;
+        padding: 7px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      .admin-actions .remove {
+        color: #aa3a3a;
+      }
+      .admin-note {
+        background: #fff8e8;
+        border-left: 3px solid var(--gold);
+        padding: 12px;
+        font-size: 12px;
+        color: #735a2d;
+        margin-top: 18px;
+      }
+      @media (max-width: 800px) {
+        .admin-form {
+          grid-template-columns: 1fr;
+        }
+        .admin-form textarea,
+        .admin-form .full {
+          grid-column: auto;
+        }
+        .admin-card {
+          padding: 24px 18px;
+        }
+        .admin-item {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .secret-link {
+          display: block;
+          margin: 14px 0 0;
+        }
+      }
+  .social-links{display:flex;gap:10px;justify-content:center;margin-top:18px}.social-link{width:38px;height:38px;border:1px solid #48616a;border-radius:50%;display:grid;place-items:center;color:#dce7e9;font-weight:700;font-size:14px}.social-link:hover{color:var(--gold);border-color:var(--gold)}.social-fields{display:grid;gap:10px}.social-field{display:grid;grid-template-columns:24px 1fr;gap:8px;align-items:center}.social-field input[type=checkbox]{width:17px;height:17px;accent-color:var(--gold)}
+  </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container">
+        <span>Atendimento personalizado para comprar, vender ou alugar</span
+        ><span>Seg — Sex: 8h às 18h &nbsp;·&nbsp; (82) 99999-9999</span>
+      </div>
+    </div>
+    <header>
+      <div class="container">
+        <nav>
+          <a class="brand" href="#inicio"
+            ><span class="brand-mark">I</span> IMOB PRIME</a
+          >
+          <div class="navlinks">
+            <a href="#imoveis">Imóveis</a><a href="#sobre">Sobre mim</a
+            ><a href="#processo">Como funciona</a
+            ><a href="#perfil">Seu perfil</a
+            ><a class="nav-cta" href="#contato">Fale comigo</a>
+          </div>
+          <button class="menu" aria-label="Abrir menu">☰</button>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="hero" id="inicio">
+        <div class="container">
+          <div class="hero-content">
+            <div class="eyebrow">Seu próximo capítulo começa aqui</div>
+            <h1>O imóvel certo muda tudo.</h1>
+            <p>
+              Encontre um lugar que combine com seus planos, seu momento e o
+              jeito que você quer viver.
+            </p>
+            <a class="btn btn-gold" href="#imoveis"
+              >Encontrar meu imóvel <span>→</span></a
+            ><a class="btn btn-outline" href="#contato">Quero conversar</a>
+          </div>
+        </div>
+      </section>
+      <div class="searchbox">
+        <form
+          onsubmit="
+            event.preventDefault();
+            document.querySelector('#imoveis').scrollIntoView();
+          "
+        >
+          <div>
+            <label>Eu quero</label
+            ><select>
+              <option>Comprar um imóvel</option>
+              <option>Alugar um imóvel</option>
+              <option>Vender meu imóvel</option>
+            </select>
+          </div>
+          <div>
+            <label>Tipo de imóvel</label
+            ><select>
+              <option>Todos os tipos</option>
+              <option>Apartamento</option>
+              <option>Casa</option>
+              <option>Comercial</option>
+            </select>
+          </div>
+          <div>
+            <label>Localização</label><input placeholder="Cidade ou bairro" />
+          </div>
+          <button class="btn btn-gold">Buscar imóveis</button>
+        </form>
+      </div>
+      <section class="listings" id="imoveis">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Seleção exclusiva</div>
+              <h2>Imóveis em destaque</h2>
+            </div>
+            <p>
+              Uma curadoria de oportunidades para você encontrar o espaço que
+              faz sentido para a sua vida.
+            </p>
+          </div>
+          <div class="cards">
+            <article class="card">
+              <div
+                class="card-img"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80&quot;);
+                "
+              >
+                <span class="badge">Destaque</span
+                ><button class="favorite">♡</button>
+              </div>
+              <div class="card-body">
+                <div class="price">R$ 890.000</div>
+                <h3>Casa contemporânea</h3>
+                <div class="location">📍 Jardim Europa, São Paulo</div>
+                <div class="details">
+                  <span>🛏 3 quartos</span><span>♧ 2 vagas</span
+                  ><span>⌂ 186 m²</span>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <div
+                class="card-img"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80&quot;);
+                "
+              >
+                <span class="badge">Novo</span
+                ><button class="favorite">♡</button>
+              </div>
+              <div class="card-body">
+                <div class="price">R$ 1.250.000</div>
+                <h3>Apartamento com vista</h3>
+                <div class="location">📍 Ponta Verde, Maceió</div>
+                <div class="details">
+                  <span>🛏 3 quartos</span><span>♧ 2 vagas</span
+                  ><span>⌂ 142 m²</span>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <div
+                class="card-img"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80&quot;);
+                "
+              >
+                <span class="badge">Exclusivo</span
+                ><button class="favorite">♡</button>
+              </div>
+              <div class="card-body">
+                <div class="price">R$ 640.000</div>
+                <h3>Lar para chamar de seu</h3>
+                <div class="location">📍 Farol, Maceió</div>
+                <div class="details">
+                  <span>🛏 2 quartos</span><span>♧ 1 vaga</span
+                  ><span>⌂ 98 m²</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section id="sobre">
+        <div class="container about">
+          <div class="about-image">
+            <div class="experience">
+              <strong>8+</strong>anos realizando negócios com confiança
+            </div>
+          </div>
+          <div>
+            <div class="eyebrow">Muito prazer</div>
+            <h2>Mais do que imóveis, eu conecto pessoas a novos começos.</h2>
+            <p>
+              Sou corretor de imóveis especializado em transformar uma decisão
+              importante em uma experiência leve, segura e bem orientada — do
+              primeiro contato à entrega das chaves.
+            </p>
+            <div class="checks">
+              <div class="check">
+                <span>✓</span> Atendimento próximo e sem pressão
+              </div>
+              <div class="check">
+                <span>✓</span> Negociação transparente em cada etapa
+              </div>
+              <div class="check">
+                <span>✓</span> Conhecimento profundo da região
+              </div>
+            </div>
+            <a class="btn btn-gold" href="#contato"
+              >Conheça meu atendimento →</a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="process" id="processo">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Do seu jeito</div>
+              <h2>Comprar pode ser simples.</h2>
+            </div>
+            <p>
+              Você conta seu objetivo. Eu cuido do caminho com estratégia,
+              clareza e atenção aos detalhes.
+            </p>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="number">01</div>
+              <h3>Entendo seu momento</h3>
+              <p>
+                Conversamos sobre seus planos, necessidades e o que realmente
+                importa para você.
+              </p>
+            </div>
+            <div class="step">
+              <div class="number">02</div>
+              <h3>Faço a curadoria</h3>
+              <p>
+                Seleciono opções alinhadas ao seu perfil, orçamento e estilo de
+                vida.
+              </p>
+            </div>
+            <div class="step">
+              <div class="number">03</div>
+              <h3>Acompanho de perto</h3>
+              <p>
+                Visitas, documentação e negociação com segurança e total
+                transparência.
+              </p>
+            </div>
+            <div class="step">
+              <div class="number">04</div>
+              <h3>Celebramos a conquista</h3>
+              <p>
+                Até a assinatura e depois dela: você nunca fica sem suporte.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="testimonial">
+        <div class="container quote">
+          <div class="quote-mark">“</div>
+          <p>
+            O atendimento fez toda a diferença. Eu me senti seguro em cada
+            decisão e encontrei exatamente o que estava procurando.
+          </p>
+          <small>Mariana A. · Cliente comprador</small>
+          <div class="trust-row">
+            <div class="trust-item">
+              <b>Escuta de verdade</b
+              ><span
+                >Entendo seu momento antes de indicar qualquer imóvel.</span
+              >
+            </div>
+            <div class="trust-item">
+              <b>Clareza sempre</b
+              ><span
+                >Você recebe informações objetivas para decidir com
+                tranquilidade.</span
+              >
+            </div>
+            <div class="trust-item">
+              <b>Presença até depois</b
+              ><span
+                >Meu relacionamento não termina na assinatura do contrato.</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="profile" id="perfil">
+        <div class="container profile-box">
+          <div>
+            <div class="eyebrow">Atendimento sob medida</div>
+            <h2>Me conte o que você está vivendo. Eu encontro o caminho.</h2>
+            <p class="profile-copy">
+              Cada cliente tem uma história diferente. Responda três perguntas
+              rápidas e eu preparo uma conversa mais útil, com opções coerentes
+              com seus planos — sem disparos automáticos e sem pressão.
+            </p>
+            <a class="btn btn-gold" href="#contato"
+              >Prefiro falar diretamente →</a
+            >
+          </div>
+          <form class="profile-form" onsubmit="sendProfile(event)">
+            <label>O que você procura?</label
+            ><select id="interest">
+              <option>Comprar meu primeiro imóvel</option>
+              <option>Mudar para um imóvel maior</option>
+              <option>Encontrar um imóvel para alugar</option>
+              <option>Vender ou avaliar meu imóvel</option></select
+            ><label>Qual região você considera?</label
+            ><input
+              id="region"
+              required
+              placeholder="Ex.: Ponta Verde, Farol..."
+            /><label>Como prefere ser atendido?</label
+            ><select id="contactPref">
+              <option>WhatsApp</option>
+              <option>Ligação</option>
+              <option>Mensagem por e-mail</option></select
+            ><button class="btn btn-gold">
+              Criar meu atendimento personalizado →
+            </button>
+          </form>
+        </div>
+      </section>
+      <section id="contato">
+        <div class="container contact">
+          <div>
+            <div class="eyebrow">Vamos conversar</div>
+            <h2>Seu próximo endereço está mais perto do que parece.</h2>
+            <p>
+              Me conte o que você procura. Em pouco tempo, eu retorno com os
+              próximos passos e algumas opções pensadas para você.
+            </p>
+            <div class="contact-info">
+              <div>
+                <b>◉</b
+                ><span
+                  >(82) 99999-9999<br /><small>WhatsApp e ligações</small></span
+                >
+              </div>
+              <div>
+                <b>✉</b
+                ><span
+                  >contato@imobprime.com.br<br /><small
+                    >Respondemos em até 1 dia útil</small
+                  ></span
+                >
+              </div>
+              <div>
+                <b>⌖</b
+                ><span>Maceió e região<br /><small>CRECI 00000-F</small></span>
+              </div>
+            </div>
+          </div>
+          <form class="form" onsubmit="sendMessage(event)">
+            <label>Seu nome</label
+            ><input required placeholder="Como posso te chamar?" /><label
+              >Tenho interesse em</label
+            ><select>
+              <option>Comprar um imóvel</option>
+              <option>Alugar um imóvel</option>
+              <option>Vender meu imóvel</option></select
+            ><label>Mensagem</label
+            ><textarea
+              placeholder="Conte um pouco sobre o que você procura..."
+            ></textarea
+            ><button class="btn btn-gold">Enviar mensagem →</button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container">
+        <div>
+          © 2026 Imob Prime. Todos os direitos reservados.
+          <button class="secret-link" onclick="openAdmin()">Redes</button>
+        </div>
+        <div>
+          CRECI 00000-F &nbsp;·&nbsp; Privacidade &nbsp;·&nbsp; Feito para boas
+          escolhas.<div class="social-links"><a id="socialInstagram" class="social-link" target="_blank" aria-label="Instagram">◎</a><a id="socialX" class="social-link" target="_blank" aria-label="X">𝕏</a><a id="socialFacebook" class="social-link" target="_blank" aria-label="Facebook">f</a><a id="socialYoutube" class="social-link" target="_blank" aria-label="YouTube">▶</a><a id="socialLinkedin" class="social-link" target="_blank" aria-label="LinkedIn">in</a></div>
+        </div>
+      </div>
+    </footer>
+    <div class="admin-modal" id="adminModal">
+      <div class="admin-card">
+        <button class="admin-close" onclick="closeAdmin()">×</button>
+        <div id="adminContent"></div>
+      </div>
+    </div>
+    <a
+      class="whatsapp"
+      href="https://wa.me/5582999999999?text=Ol%C3%A1!%20Vi%20seu%20site%20e%20quero%20encontrar%20um%20im%C3%B3vel."
+      target="_blank"
+      aria-label="Falar no WhatsApp"
+      ><svg viewBox="0 0 24 24" width="29" height="29" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.8L.2 24l6.6-1.7a11.7 11.7 0 0 0 5.3 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.3-6.1-3.5-8.3Zm-8.4 18.1h-.1c-1.7 0-3.3-.5-4.8-1.3l-.3-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.3 4.7Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.5.9-1.7.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.6s1.2 3 1.4 3.2c.2.2 2.3 3.5 5.6 4.9 2.1.9 2.6.8 3 .7.5-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4Z"/></svg></a
+    >
+    <script>
+      function sendMessage(e) {
+        e.preventDefault();
+        window.open(
+          "https://wa.me/5582999999999?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20um%20im%C3%B3vel.",
+          "_blank",
+        );
+      }
+      function sendProfile(e) {
+        e.preventDefault();
+        var i = document.querySelector("#interest").value,
+          r = document.querySelector("#region").value,
+          p = document.querySelector("#contactPref").value;
+        var m =
+          "Ol%C3%A1!%20Meu%20perfil%3A%20" +
+          encodeURIComponent(i) +
+          "%20%7C%20Regi%C3%A3o%3A%20" +
+          encodeURIComponent(r) +
+          "%20%7C%20Prefiro%3A%20" +
+          encodeURIComponent(p);
+        window.open("https://wa.me/5582999999999?text=" + m, "_blank");
+      }
+      function openAdmin() {
+        document.querySelector("#adminModal").classList.add("open");
+        renderLogin();
+      }
+      function closeAdmin() {
+        document.querySelector("#adminModal").classList.remove("open");
+      }
+      function renderLogin() {
+        document.querySelector("#adminContent").innerHTML =
+          '<div class="login-box"><div class="eyebrow">Área reservada</div><h2>Redes</h2><p>Acesse o painel para administrar os imóveis publicados no site.</p><form class="form" onsubmit="loginAdmin(event)"><label>Usuário</label><input id="adminUser" required autocomplete="username"><label>Senha</label><input id="adminPass" required type="password" autocomplete="current-password"><button class="btn btn-gold">Entrar no painel →</button><div class="admin-note">Acesso inicial: usuário <b>admin</b> · senha <b>123456</b>. Altere as credenciais quando conectar o painel a um servidor.</div></form></div>';
+      }
+      function loginAdmin(e) {
+        e.preventDefault();
+        if (
+          document.querySelector("#adminUser").value === "admin" &&
+          document.querySelector("#adminPass").value === "123456"
+        ) {
+          renderPanel();
+        } else alert("Usuário ou senha inválidos.");
+      }
+      function renderPanel() {
+        var a = JSON.parse(localStorage.getItem("imobListings") || "[]");
+        document.querySelector("#adminContent").innerHTML =
+          '<div><div class="eyebrow">Painel administrativo</div><h2>Gerenciar imóveis</h2><p>Cadastre, revise e remova imóveis da vitrine pública.</p><form class="admin-form" onsubmit="saveListing(event)"><input id="lTitle" class="full" required placeholder="Título do imóvel"><input id="lPrice" required placeholder="Preço (ex.: R$ 650.000)"><input id="lLocation" required placeholder="Cidade, bairro e estado"><input id="lType" required placeholder="Tipo (casa, apartamento...) "><input id="lRooms" required placeholder="Quartos"><input id="lParking" required placeholder="Vagas"><input id="lArea" required placeholder="Área em m²"><input id="lImage" class="full" required placeholder="URL da foto principal"><textarea id="lDescription" placeholder="Descrição e diferenciais"></textarea><button class="btn btn-gold full">Publicar imóvel</button></form><div class="admin-list"><h3>Imóveis cadastrados</h3>' +
+          (a.length
+            ? a
+                .map(function (x, i) {
+                  return (
+                    '<div class="admin-item"><span><b>' +
+                    x.title +
+                    "</b><br><small>" +
+                    x.location +
+                    " · " +
+                    x.price +
+                    '</small></span><span class="admin-actions"><button onclick="editListing(' +
+                    i +
+                    ')">Editar</button><button class="remove" onclick="removeListing(' +
+                    i +
+                    ')">Excluir</button></span></div>'
+                  );
+                })
+                .join("")
+            : "<p>Nenhum imóvel novo cadastrado ainda.</p>") +
+          '</div><button class="btn" onclick="closeAdmin()">Sair</button></div>';
+      }
+      function saveListing(e) {
+        e.preventDefault();
+        var a = JSON.parse(localStorage.getItem("imobListings") || "[]");
+        a.push({
+          title: lTitle.value,
+          price: lPrice.value,
+          location: lLocation.value,
+          type: lType.value,
+          rooms: lRooms.value,
+          parking: lParking.value,
+          area: lArea.value,
+          image: lImage.value,
+          description: lDescription.value,
+        });
+        localStorage.setItem("imobListings", JSON.stringify(a));
+        renderPanel();
+        alert(
+          "Imóvel publicado com sucesso. Ele aparecerá na vitrine após atualizar a página.",
+        );
+      }
+      function removeListing(i) {
+        var a = JSON.parse(localStorage.getItem("imobListings") || "[]");
+        a.splice(i, 1);
+        localStorage.setItem("imobListings", JSON.stringify(a));
+        renderPanel();
+      }
+      function editListing(i) {
+        alert(
+          "Para editar, remova este cadastro e publique os dados atualizados. A edição completa será conectada ao banco de dados na próxima etapa.",
+        );
+      }
+      function syncListings() {
+        var a = JSON.parse(localStorage.getItem("imobListings") || "[]"),
+          c = document.querySelector(".cards");
+        a.forEach(function (x) {
+          var el = document.createElement("article");
+          el.className = "card";
+          el.innerHTML =
+            '<div class="card-img" style="background-image:url(' +
+            JSON.stringify(x.image) +
+            ')"><span class="badge">Novo</span></div><div class="card-body"><div class="price">' +
+            x.price +
+            "</div><h3>" +
+            x.title +
+            '</h3><div class="location">📍 ' +
+            x.location +
+            '</div><div class="details"><span>🛏 ' +
+            x.rooms +
+            " quartos</span><span>♧ " +
+            x.parking +
+            " vagas</span><span>⌂ " +
+            x.area +
+            " m²</span></div></div>";
+          c.appendChild(el);
+        });
+      }
+      syncListings();
+    </script>
+  </body>
+</html>
