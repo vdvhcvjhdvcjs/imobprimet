@@ -1295,7 +1295,7 @@
         if (!x) return;
         var photos = [x.image].concat(x.gallery || []).filter(Boolean);
         document.querySelector("#adminModal").classList.add("open");
-        document.querySelector("#adminContent").innerHTML = '<div class="eyebrow">Detalhes do imóvel</div><h2>' + x.title + '</h2><p>' + (x.description || "Imóvel selecionado da nossa curadoria.") + '</p><div class="cards" style="margin-top:22px">' + photos.map(function (photo) { return '<div class="card-img" style="background-image:url(' + JSON.stringify(photo) + ');height:220px"></div>'; }).join("") + '</div><a class="btn btn-gold" style="margin-top:24px" target="_blank" href="https://wa.me/5582999999999?text=' + encodeURIComponent("Olá! Tenho interesse no imóvel " + x.title) + '">Tenho interesse neste imóvel →</a>';
+        document.querySelector("#adminContent").innerHTML = '<div class="eyebrow">Detalhes do imóvel</div><h2>' + x.title + '</h2><p>' + (x.description || "Imóvel selecionado da nossa curadoria.") + '</p><div class="cards" style="margin-top:22px">' + photos.map(function (photo) { return '<div class="card-img" style="background-image:url(' + JSON.stringify(photo) + ');height:220px"></div>'; }).join("") + '</div><a class="btn btn-gold" style="margin-top:24px" target="_blank" href="https://wa.me/5582996986040?text=' + encodeURIComponent("Olá! Tenho interesse no imóvel " + x.title) + '">Tenho interesse neste imóvel →</a>';
       }
       syncListings();
       initFavorites();
